@@ -1,0 +1,46 @@
+{
+    "name": "walkerchiu/php-group-int",
+    "type": "library",
+    "authors": [
+        {
+            "name":  "Walker Chiu",
+            "email": "chenjen.chiou@gmail.com"
+        }
+    ],
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.3",
+        "walkerchiu/php-core-int": "^1.0"
+    },
+    "suggest": {
+        "walkerchiu/php-currency-int": "^1.0",
+        "walkerchiu/php-morph-board-int": "^1.0",
+        "walkerchiu/php-morph-category-int": "^1.0",
+        "walkerchiu/php-morph-comment-int": "^1.0",
+        "walkerchiu/php-morph-image-int": "^1.0",
+        "walkerchiu/php-morph-registration-int": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "WalkerChiu\\Group\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "WalkerChiu\\Group\\GroupServiceProvider"
+            ],
+            "aliases": {
+                "Group":          "WalkerChiu\\Group\\Models\\Entities\\Group",
+                "GroupWithImage": "WalkerChiu\\Group\\Models\\Entities\\GroupWithImage"
+            }
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    }
+}
