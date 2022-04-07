@@ -110,10 +110,6 @@ class GroupObserver
      */
     public function deleted($entity)
     {
-        if (!config('php-group.soft_delete')) {
-            $entity->forceDelete();
-        }
-
         if ($entity->isForceDeleting()) {
             $entity->langs()->withTrashed()
                             ->forceDelete();
@@ -121,25 +117,37 @@ class GroupObserver
                 config('wk-group.onoff.currency')
                 && !empty(config('wk-core.class.currency.currency'))
             ) {
-                $entity->currencies()->withTrashed()->delete();
+                $records = $entity->currencies()->withTrashed()->get();
+                foreach ($records as $recoed) {
+                    $recoed->forceDelete();
+                }
             }
             if (
                 config('wk-group.onoff.firewall')
                 && !empty(config('wk-core.class.firewall.firewall'))
             ) {
-                $entity->firewalls()->withTrashed()->delete();
+                $records = $entity->firewalls()->withTrashed()->get();
+                foreach ($records as $recoed) {
+                    $recoed->forceDelete();
+                }
             }
             if (
                 config('wk-group.onoff.morph-address')
                 && !empty(config('wk-core.class.morph-address.address'))
             ) {
-                $entity->addresses()->withTrashed()->forceDelete();
+                $records = $entity->addresses()->withTrashed()->get();
+                foreach ($records as $recoed) {
+                    $recoed->forceDelete();
+                }
             }
             if (
                 config('wk-group.onoff.morph-board')
                 && !empty(config('wk-core.class.morph-board.board'))
             ) {
-                $entity->boards()->withTrashed()->forceDelete();
+                $records = $entity->boards()->withTrashed()->get();
+                foreach ($records as $recoed) {
+                    $recoed->forceDelete();
+                }
             }
             if (
                 config('wk-group.onoff.morph-category')
@@ -151,19 +159,28 @@ class GroupObserver
                 config('wk-group.onoff.morph-comment')
                 && !empty(config('wk-core.class.morph-comment.comment'))
             ) {
-                $entity->comments()->withTrashed()->forceDelete();
+                $records = $entity->comments()->withTrashed()->get();
+                foreach ($records as $recoed) {
+                    $recoed->forceDelete();
+                }
             }
             if (
                 config('wk-group.onoff.morph-image')
                 && !empty(config('wk-core.class.morph-image.image'))
             ) {
-                $entity->images()->withTrashed()->forceDelete();
+                $records = $entity->images()->withTrashed()->get();
+                foreach ($records as $recoed) {
+                    $recoed->forceDelete();
+                }
             }
             if (
                 config('wk-group.onoff.morph-registration')
                 && !empty(config('wk-core.class.morph-registration.registration'))
             ) {
-                $entity->registrations()->withTrashed()->forceDelete();
+                $records = $entity->registrations()->withTrashed()->get();
+                foreach ($records as $recoed) {
+                    $recoed->forceDelete();
+                }
             }
             if (
                 config('wk-group.onoff.morph-tag')
@@ -176,26 +193,42 @@ class GroupObserver
                 config('wk-group.onoff.morph-link')
                 && !empty(config('wk-core.class.morph-link.link'))
             ) {
-                $entity->links()->withTrashed()->forceDelete();
+                $records = $entity->links()->withTrashed()->get();
+                foreach ($records as $recoed) {
+                    $recoed->forceDelete();
+                }
             }
             if (
                 config('wk-group.onoff.newsletter')
                 && !empty(config('wk-core.class.newsletter.article'))
             ) {
-                $entity->newsletters()->withTrashed()->forceDelete();
+                $records = $entity->newsletters()->withTrashed()->get();
+                foreach ($records as $recoed) {
+                    $recoed->forceDelete();
+                }
             }
             if (
                 config('wk-group.onoff.payment')
                 && !empty(config('wk-core.class.payment.payment'))
             ) {
-                $entity->payments()->withTrashed()->forceDelete();
+                $records = $entity->payments()->withTrashed()->get();
+                foreach ($records as $recoed) {
+                    $recoed->forceDelete();
+                }
             }
             if (
                 config('wk-group.onoff.role')
                 && !empty(config('wk-core.class.role.role'))
             ) {
-                $entity->roles()->withTrashed()->forceDelete();
+                $records = $entity->roles()->withTrashed()->get();
+                foreach ($records as $recoed) {
+                    $recoed->forceDelete();
+                }
             }
+        }
+
+        if (!config('php-group.soft_delete')) {
+            $entity->forceDelete();
         }
     }
 
